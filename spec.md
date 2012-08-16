@@ -365,7 +365,8 @@ The strings $OS_IMAGE_URL and $OS_AUTH_TOKEN represent variables defined in the 
 
 ####Create an Image
 ```
-% curl -i -X POST -H "X-Auth-Token: $OS_AUTH_TOKEN" -H "Content-Type: application/json" \
+% curl -i -X POST -H "X-Auth-Token: $OS_AUTH_TOKEN" \
+       -H "Content-Type: application/json" \
        -d '{"name": "Ubuntu 12.10", "tags": ["ubuntu", "12.10", "quantal"]}' \
        $OS_IMAGE_URL/v2/images
 ```
@@ -395,7 +396,8 @@ Date: Tue, 14 Aug 2012 00:46:48 GMT
 ####Update the Image
 
 ```
-% curl -i -X PUT -H "X-Auth-Token: $OS_AUTH_TOKEN" -H "Content-Type: application/json" \
+% curl -i -X PUT -H "X-Auth-Token: $OS_AUTH_TOKEN" \
+       -H "Content-Type: application/json" \
        -d '{"login_user": "root"}' \
        $OS_IMAGE_URL/v2/images/7b97f37c-899d-44e8-aaa0-543edbc4eaad
 ```
@@ -424,12 +426,47 @@ Date: Tue, 14 Aug 2012 00:46:50 GMT
 
 ####Upload Binary Image Data
 
-TODO
+```
+% curl -i -X PUT -H "X-Auth-Token: $OS_AUTH_TOKEN" \
+       -H "Content-Type: application/octet-stream" \
+       -d @/home/glance/ubuntu-12.10.qcow2 \
+       $OS_IMAGE_URL/v2/images/7b97f37c-899d-44e8-aaa0-543edbc4eaad/file
+```
+
+```
+HTTP/1.1 100 Continue
+
+HTTP/1.1 201 Created
+Content-Length: 0
+Date: Tue, 14 Aug 2012 00:46:59 GMT
+```
 
 ####Download Binary Image Data
 
-TODO
+```
+% curl -i -X PUT -H "X-Auth-Token: $OS_AUTH_TOKEN" \
+       $OS_IMAGE_URL/v2/images/7b97f37c-899d-44e8-aaa0-543edbc4eaad/file
+```
+
+```
+HTTP/1.1 200 OK
+Content-Type: application/octet-stream
+Content-Md5: 912ec803b2ce49e4a541068d495ab570
+Transfer-Encoding: chunked
+Date: Thu, 14 Aug 2012 00:47:10 GMT
+
+…
+```
 
 ####Delete Image
 
-TODO
+```
+% curl -i -X DELETE -H "X-Auth-Token: $OS_AUTH_TOKEN" \
+       $OS_IMAGE_URL/v2/images/7b97f37c-899d-44e8-aaa0-543edbc4eaad
+```
+
+```
+HTTP/1.1 204 No Content
+Content-Length: 0
+Date: Tue, 14 Aug 2012 00:47:12 GMT
+```
