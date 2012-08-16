@@ -444,7 +444,7 @@ Date: Tue, 14 Aug 2012 00:46:59 GMT
 ####Download Binary Image Data
 
 ```
-% curl -i -X PUT -H "X-Auth-Token: $OS_AUTH_TOKEN" \
+% curl -i -X GET -H "X-Auth-Token: $OS_AUTH_TOKEN" \
        $OS_IMAGE_URL/v2/images/7b97f37c-899d-44e8-aaa0-543edbc4eaad/file
 ```
 
