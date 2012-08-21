@@ -25,6 +25,9 @@ The following HTTP status codes are all valid responses:
 * 403 - authenticated client unable to perform action
 * 409 - that action is impossible due to some (possibly permanent) circumstance
 
+Responses that don't have a 200-level response code are not guaranteed to have a body. If a response does happen to return a body, it is not part of this spec and cannot be depended upon.
+      
+
 ###Authentication and Authorization
 
 This spec does not govern how one might authenticate or authorize clients of the v2 Images API. Implementors are free to decide how to identify clients and what authorization rules to apply.
